@@ -26,3 +26,11 @@ post in HTML doc
 <i class="fa-solid fa-video"></i>
 <i class="fa-solid fa-mobile-screen-button"></i>
 <i class="fa-solid fa-arrow-up"></i>
+<i class="fa-regular fa-newspaper"></i>
+<i class="fa-regular fa-images"></i>
+<i class="fa-brands fa-youtube"></i>
+<i class="fa-solid fa-tag"></i>
+<i class="fa-solid fa-microphone"></i>
+<i class="fa-solid fa-table-cells"></i>
+<i class="fa-solid fa-caret-down"></i>
+<i class="fa-solid fa-angle-right"></i>
