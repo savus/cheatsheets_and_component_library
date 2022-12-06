@@ -1,0 +1,28 @@
+got to font awesome.
+select Your Kits
+Copy script tag and put in header of HTML doc
+pic free icon
+click start using icon
+copy <i> tag code
+post in HTML doc
+
+	<i class="fa-solid fa-bars"></i>
+      <i class="fa-solid fa-square-full"></i>
+      <i class="fa-solid fa-circle"></i>
+      <i class="fa-solid fa-play"></i>
+      <i class="fa-solid fa-magnifying-glass"></i>
+      trigram &#9776;
+      <i class="fa-solid fa-ellipsis-vertical"></i>
+      <i class="fa-solid fa-user"></i>
+<i class="fa-solid fa-phone"></i>
+<i class="fa-solid fa-location-dot"></i>
+<i class="fa-solid fa-envelope"></i>
+<i class="fa-solid fa-cake-candles"></i>
+<i class="fa-regular fa-calendar-day"></i>
+<i class="fa-solid fa-play"></i>
+<i class="fa-solid fa-house"></i>
+<i class="fa-solid fa-circle-info"></i>
+<i class="fa-solid fa-address-book"></i>
+<i class="fa-solid fa-video"></i>
+<i class="fa-solid fa-mobile-screen-button"></i>
+<i class="fa-solid fa-arrow-up"></i>

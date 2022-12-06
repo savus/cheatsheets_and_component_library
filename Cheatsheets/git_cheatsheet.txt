@@ -1,0 +1,89 @@
+Instructions For Git Syntax
+
+touch <name> creates new file (include extension) 
+rm <name> removes file
+mv <filename> <directory name> - moves file to stated directory
+mkdir <name> - create directory
+rmdir <name> - remove empty directory
+rm --cached <name> remove un-empty directory
+cd change directory
+/c/ check directory
+ls list contents within directory
+cd . .  back out one directory folder
+git init - establishes new repo
+git status - lists out staging levels of all repo elements
+git add - moves file to staging area
+git restore --staged <name> - moves file out of staging area
+git commit - moves to commit-message screen
+i - toggles commit message edit mode
+:w - commits changes
+:q - exit commit-message screen
+:wq - commits changes and exits 
+vi .gitignore - changes to .gitignore edit screen - type full file name (/directory name),
+add # -.gitignore below all file listings
+git log - brings up commit history
+git log --oneline - brings up simplified commit history
+git remote add origin <github.com repository file path> - connects a github repository with your local repository
+git remote -v - displays remote connected repository list  
+git remote rm origin - removes remote repository
+git push origin <branch name> - pushes code from the specified branch to the remote repository
+git checkout origin/master - displays current pull data
+git fetch - pull all current information from remote repo
+git checkout <name> - switch branch to <name>
+git merge origin/master - merge changes made to remote repo
+git pull origin master - combine remote changes with local repo 
+git clone <repository address> - clones a remote repository from github
+git branch - returns the current branch being worked on, noted by an *
+git branch -a - returns all branches in repository, current branch noted by an *
+git branch <new branch name> creates a new branch with assigned name
+git branch -v returns list of branches and details what commits they are associated with
+git branch -d <local_branch_name> - deletes branch locally
+git push origin --delete <remote_branch_name> - deletes branch remotely
+git checkout <name> switches current branch to given branch name
+git checkout -b <name> switches current branch to given branch name;
+if given name does not exist, creates a new branch with given name, then
+switches to it
+git merge <branch name> - merges named branch with currently checkedout branch
+
+____RESOLVING MERGE CONFLICTS____
+On branch that you want to have the final result, type "vi <conflicting file name>" 
+you'll see formatting between the conflicting files
+<<<<<<<<HEAD
+Hello World!
+============
+Hello World.
+conflicting_merge_files>>>>>>>
+
+delete the extra formating, and make sure only the changes remain that you want
+, then save and quit, then add and commit. You will see a "merge conflict commit" 
+message, save and quit, and the merge conflict will be resolved with additional
+infomation in the git log.
+
+git stash - temporarily saves un-committed information incase of emergency edits needed for current project; to be retrieved later
+git stash list - returns list of temporarily stashed inventory {last-out first-in}
+git stash show - returns list of changes to last stashed files
+git stash show stash@{index} - returns list of changes to files of specified index
+git stash show -p - returns lines of code that were changed in last stashed files
+git stash show -p stash@{index} - returns lines of code that were changed in files of specified index
+git stash pop - take changes from {0} index stash and apply to current branch
+git stash pop stash@{index} - take changes from {index} stash and apply to current branch
+git stash drop stash@{index} - delete stashed changes from {index} stash
+git stash clear - deletes all items in the stash list
+
+git diff {hash_1} {hash_2} returns changes made during both commits
+git revert {hash} inverts changes made to specified commit using {hash} as a reference
+without deleting commit history
+git reset --soft {hash} reverts to changes made during {hash} commit and puts all
+subsequent commits into staging area
+git 
+git reset --mixed {hash} - directs the MAIN and HEAD to the {hash} commit, and puts
+all subsequent commits into the staging area so that you can make changes to a previous 
+commit without affecting changes made to other files
+git reset --hard {hash} directs the MAIN and HEAD to the {hash} commit, and clears
+the staging area and working directory of all files, working directory files are kept as is
+git rm <file name> - deletes file name and puts it in the staging area, requires
+commit of file deletion
+git commit --amend - brings up previous commit message to be edited.
+changes commit hash, date, and time. Includes any newly staged finles
+to 'changes to be commited' list.
+git reflog - returns a history log list of where the tips of branches/working directory has pointed to 
