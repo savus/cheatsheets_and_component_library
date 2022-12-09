@@ -34,3 +34,4 @@ post in HTML doc
 <i class="fa-solid fa-table-cells"></i>
 <i class="fa-solid fa-caret-down"></i>
 <i class="fa-solid fa-angle-right"></i>
+<i class="fa-solid fa-x"></i>
