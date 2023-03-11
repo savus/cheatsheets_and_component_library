@@ -1,0 +1,9 @@
+'world'.split('').reverse()
+Array(5) [ "d", "l", "r", "o", "w" ]
+
+'world'.split('').reverse().join()
+"d,l,r,o,w"
+'world'.split('').reverse().join('')
+"dlrow"
+'GACT'.replace('T','U')
+"GACU" 
