@@ -1,0 +1,14 @@
+Literals - match a specific character
+/a/.test('cat') = tests for 'a' in cat - return true
+/cat/.test('cart') = tests for 'cat' adjacent - return false
+/cat/.test('the cat there') tests for 'cat' adjacent in whole string - return true
+/a cat/.test('that is a cat') tests for spaces as well - return true
+
+Wildcards - match any character (must exist)
+/./.test('a') true
+/./.test('>') true
+/./.test('') false
+/./.test('\n') doesn't match new lines - return false
+/a./ tests if there is an 'a' consecutively followed by any other character
+/.a/ tests if there is any other character followed consecutively by 'a'
+/x.z/.test('xyz') = true;
