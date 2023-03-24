@@ -58,3 +58,33 @@ Sort array of strings from smallest word to longest
 function sortByLength (array) {
   return array.sort((a,b) => a.length - b.length);
 };
+
+=====================================================
+
+Print phrase based on flower petals with numbers divisible by 6 
+
+========================================================
+
+function howMuchILoveYou(nbPetals) {
+  let phrase = {    
+    0: "not at all",
+    1: "I love you",
+    2: "a little",
+    3: "a lot",
+    4: "passionately",
+    5: "madly"
+  }
+  return phrase[nbPetals%6]
+}
+
+=========================================================
+
+find the index of a number that (if the numbers were sorted correctly) would be 
+between the other two of a triplet array
+
+var gimme = function (inputArray) {
+  return inputArray.indexOf(inputArray.slice(0).sort(function(a,b) { return a-b; })[1]);
+};
+
+// [2, 3, 1] => 0 because 0 is the index of 2 that is between 1 and 3
+// [14, 5, 10] => 2 because 2 is the index of 10 that is between 5 and 14
