@@ -1,9 +1,60 @@
-'world'.split('').reverse()
-Array(5) [ "d", "l", "r", "o", "w" ]
 
+Reverse word in same order
+================================
 'world'.split('').reverse().join()
 "d,l,r,o,w"
+
 'world'.split('').reverse().join('')
 "dlrow"
+
+================================
+
 'GACT'.replace('T','U')
 "GACU" 
+
+Find out if a number is a perfect square 
+====================================
+
+return num >=0 && Number.isInteger( Math.sqrt(num) );
+
+====================================
+
+Find min and max values in a string of numbers 
+==============================================
+
+array = '8 3 4 -1 7 20'.split(' ').map(Number);
+
+return Math.max(...array) + ' ' + Math.min(...array);
+
+==============================================
+
+Find the average of parameters and return a grade 
+
+===============================================
+
+function getGrade (s1, s2, s3) {
+  // Code here
+  const average = [...arguments]
+    .reduce((acc, val) => acc + val) / arguments.length;
+  
+  return (average >= 90 && average <= 100) 
+    ? 'A'
+    : (average >= 80 && average < 90) 
+    ? 'B'
+    : (average >= 70 && average < 80) 
+    ? 'C'
+    : (average >= 60 && average < 70) 
+    ? 'D'
+    : 'F';
+  
+}
+
+=====================================================
+
+Sort array of strings from smallest word to longest 
+
+=====================================================
+
+function sortByLength (array) {
+  return array.sort((a,b) => a.length - b.length);
+};
