@@ -34,3 +34,38 @@ function reverseWords(arr) {
 }
 
 =======================================
+count by multiples
+
+function countBy(multiple, limit) {
+	let z = [];
+	for (let i = 1; i <= n; i++) {
+		z.push(multiple * i);
+	}
+
+	return z;
+}
+========================================
+
+find multiples 
+
+
+function findMultiples(integer, limit) {
+    const a = [];
+    let increment = 1;
+    while (integer * increment <= limit) {
+        a.push(integer * increment);
+        increment++;
+    }
+    return a;
+}
+========================================
+
+sort an array of strings in order to their ASCII characters
+and return each letter sepparated by '***'
+
+function twoSorts(s) {
+    return String( sArray.sort()
+		.map( (string) => string
+			.split('')
+			.join('***') ) );
+}
