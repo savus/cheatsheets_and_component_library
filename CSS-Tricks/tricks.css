@@ -2,6 +2,7 @@
    /* NEON BUTTON SECTION */
    --clr-neon:hsl(317 100% 54%);
    --clr-bg: hsl(323 21% 16%);
+   --clr-primary-400:blue;
 }
 
 body {
@@ -15,7 +16,7 @@ section.neon-button-section *::after {
 }
 
 section.neon-button-section {
-   height:300px;
+   padding:50px 0;
    display:grid;
    place-items:center;
    background: var(--clr-bg);
@@ -88,3 +89,69 @@ section.neon-button-section {
    opacity:1;
 }
 
+section.timing-function {
+   background-color:#000;
+   padding:50px 0;
+   display:flex;
+   justify-content:center;
+   align-items:center;
+   color:white;
+}
+
+section.timing-function button {
+   padding:0.5em 1em;
+   background: var(--clr-primary-400);
+   border:0;
+   border-radius:0.25rem;
+   cursor:pointer;
+   font-size:2rem;
+   transition: transform 1000ms;
+   margin-right:20px;
+}
+
+section.timing-function button:hover,
+section.timing-function button:focus-visible {
+   transform:translateY(-0.75rem);
+   transition: transform 250ms; /*make button slide slower when let go*/
+}
+
+section.timing-function button.party-time {
+   animation: party 2000ms infinite;
+}
+
+section.timing-function p {
+   animation: fadeInOut 2000ms infinite;
+   transition-timing-function: ease-in-out;
+}
+
+@keyframes party {
+   0% {
+      background-color:red;
+   }
+   20% {
+      background-color:orange;
+   }
+   40% {
+      background-color:red;
+   }
+   60% {
+      background-color:blue;
+   }
+   80% {
+      background-color: purple
+   }
+   100% {
+      background-color: red;
+   }
+}
+
+@keyframes fadeInOut {
+   0%, 100% {
+      opacity:0;
+      visibility:hidden;
+   }
+   50%, 60% {
+      opacity:1;
+      visibility:visible;
+   }
+}
