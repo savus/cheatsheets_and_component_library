@@ -119,3 +119,39 @@ function century(year) {
 	if (year % 100 === 0) return c; //every 100 years will be the correct century
 	else return c + 1;// the nth century is always called one number higher ex (1701 is the 18th century)
 }
+
+//how many students need how many papers
+
+function paperwork(n, m) {
+    return (n < 0 || m < 0) ? 0 : n * m;
+} 
+
+//replace dots with dashes
+const replaceDots = function(str) {
+	return str.replaceAll('.', '-');
+}
+
+//find the (n) index of an array and raise it by
+//(n)th power
+function nthPower(array, n) {
+	if (n >= array.length) return -1;
+	return Math.pow(array[n], n); 
+}
+
+function position(letter) {
+	const alpha = 
+		"A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z."
+		.split(',')
+		.join('')
+		.replaceAll(' ', '');
+	const position = alpha.indexOf(letter.toUpperCase()) + 1;
+	return `position of alphabet: ${position}`;
+}
+
+//remove largest and smallest numbers from array 
+// and return sum
+function sumArray(array) {
+	if (array === null) return 0;
+	const sorted = array.sort((a,b) => a - b);
+	return sorted.slice(1, -1).reduce((total, current) => total + current);
+}
