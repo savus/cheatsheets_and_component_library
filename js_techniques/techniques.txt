@@ -69,3 +69,53 @@ function twoSorts(s) {
 			.split('')
 			.join('***') ) );
 }
+
+========================================
+retrieve a css variable through javascript
+
+const root = document.documentElement;
+const loadingScreenDelay = parseFloat(
+   window
+      .getComputedStyle(root)
+      .getPropertyValue('--loading-screen-delay')
+);
+
+
+function capitalizeWord(word) {
+	return word[0].toUpperCase() + word.slice(1);
+}
+
+const quarterOf = (month) => Math.ceil(month / 3);
+
+
+function grow(x) {
+	return x.reduce((total, value) => total * value);
+}
+
+const noSpace = (x) => x.replaceAll(' ', '');
+
+function distanceBetweenPoints(a, b) {
+	const x = a.x - b.x;
+	const y = a.y - b.y;
+	return Math.sqrt(x ** 2 + y ** 2);
+}
+
+//convert kilometers per hour to centimeters per second
+function convertKMHToCMS(s) {
+	return Math.floor(s * 1000 * 100 / (60 * 60));
+}
+
+function bonusTime(salary, bonus) {
+	return (bonus) ? salary * 10 : salary;
+}
+
+function greet(name) {
+	return `Hello ${(name === 'Johnny') ? 'my love' : name}!`;
+}
+
+function century(year) {
+	if (year.toString().length < 3) return 1; // 1rst century
+	const c = parseInt(year.toString().slice(0, -2));// the nth century is always two numbers shorter
+	if (year % 100 === 0) return c; //every 100 years will be the correct century
+	else return c + 1;// the nth century is always called one number higher ex (1701 is the 18th century)
+}
