@@ -1,5 +1,5 @@
-Find first non-consecutive number
-==================================
+//Find first non-consecutive number
+//==================================
 
 function firstNonConsecutive(arr) {
   for (let i = 0; i < arr.length - 1; ++i) {
@@ -10,31 +10,25 @@ function firstNonConsecutive(arr) {
   return null
 }
 
-====================================
 
-Sum of two smallest numbers
+//Sum of two smallest numbers
 
 function twoSmallestNumbers(numbers) {
-	const [a, b] = numbers.sort((a,b) => a - b));
+	const [a, b] = numbers.sort((a,b) => a - b);
 	return a + b;
 }
 
-======================================
 
-reverse words in same order
+//reverse words in same order
 
 function reverseWords(arr) {
 	return arr
 		.split("")
 		.reverse()
-		.join("")
-		.split(" ")
-		.reverse()
-		.join(" ");
+		.join("");
 }
 
-=======================================
-count by multiples
+//count by multiples
 
 function countBy(multiple, limit) {
 	let z = [];
@@ -44,9 +38,8 @@ function countBy(multiple, limit) {
 
 	return z;
 }
-========================================
 
-find multiples 
+//find multiples 
 
 
 function findMultiples(integer, limit) {
@@ -58,10 +51,9 @@ function findMultiples(integer, limit) {
     }
     return a;
 }
-========================================
 
-sort an array of strings in order to their ASCII characters
-and return each letter sepparated by '***'
+/*sort an array of strings in order to their ASCII characters
+and return each letter sepparated by '***' */
 
 function twoSorts(s) {
     return String( sArray.sort()
@@ -70,8 +62,7 @@ function twoSorts(s) {
 			.join('***') ) );
 }
 
-========================================
-retrieve a css variable through javascript
+//retrieve a css variable through javascript
 
 const root = document.documentElement;
 const loadingScreenDelay = parseFloat(
@@ -154,4 +145,41 @@ function sumArray(array) {
 	if (array === null) return 0;
 	const sorted = array.sort((a,b) => a - b);
 	return sorted.slice(1, -1).reduce((total, current) => total + current);
+}
+
+function enough(cap, on, wait) {
+	if (cap - (on + wait) >= 0) return 0;
+	return on + wait - cap;
+}
+
+function countSheeps(arrayOfSheep) {
+	return arrayOfSheep.filter((sheep) => sheep === true);
+}
+
+function reverseList(list) {
+	return list.reverse();
+}
+
+function setAlarm(employed, vacation) {
+	if (employed && !vacation) return true;
+	return false;
+}
+
+function closeCompare(a, b, margin) {
+	const diff = Math.abs(a - b);
+	margin = margin || 0;
+	if (margin >= diff) return 0;
+	else if (a < b) return -1;
+	else return 1;
+}
+
+function points(games) {
+	return games 
+		.map((game) => {
+			const {x, y} = game.split(':').map((score) => parseInt(score));
+			if (x > y) return 3;
+			if (x < y) return 0;
+			return 1;
+		})
+		.reduce((total, currentValue) => total + currentValue);
 }
