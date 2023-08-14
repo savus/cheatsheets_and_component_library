@@ -183,3 +183,29 @@ function points(games) {
 		})
 		.reduce((total, currentValue) => total + currentValue);
 }
+
+function warnTheSheep(queue) {
+	const reversed = queue.reverse();
+	const wolfIndex = reversed.indexOf('wolf');
+	if (wolfIndex === 0) return 'Pls go away and stop eating my sheep!';
+	return `Oi Sheep number ${wolfIndex}! You are about to be eaten by a wolf!`;
+}
+
+//number of pillars (>= 1)
+//distance between pillars(10 - 30 meters)
+//width of the pillar(10 - 50 centimeters)
+//calculate the distance between the first and last pilar in centimeters (without the width of the first and last pillar)
+function pillars(numPill, dist, width) {
+	//if one pillar return 0
+	if (numPill === 1) return 0;
+	return (dist * (numPill - 1) * 100) - width * ((numPill - 2));
+}
+
+const stringToNumber = (str) => +str;
+
+function correctMistakes(string) {
+	return string
+		.replaceAll('1', 'I')
+		.replaceAll('5', 'S')
+		.replaceAll('0', 'O');
+}
