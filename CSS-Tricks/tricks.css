@@ -105,23 +105,61 @@ section.timing-function button {
    border-radius:0.25rem;
    cursor:pointer;
    font-size:2rem;
-   transition: transform 1000ms;
    margin-right:20px;
+   transition: transform 1000ms;
 }
 
 section.timing-function button:hover,
 section.timing-function button:focus-visible {
    transform:translateY(-0.75rem);
-   transition: transform 250ms; /*make button slide slower when let go*/
+   transition: transform 350ms;
 }
 
-section.timing-function button.party-time {
+section.timing-function .party-time {
    animation: party 2000ms infinite;
 }
 
 section.timing-function p {
-   animation: fadeInOut 2000ms infinite;
-   transition-timing-function: ease-in-out;
+   opacity:0;
+   visibility:hidden;
+   animation: fadeInOut 2000ms ease-in-out infinite alternate;
+}
+
+section#box-shadow-section .box {
+   padding:2em;
+   border: 1px solid black;
+   margin-left:100px;
+   margin-top:100px;
+   width:300px;
+}
+
+section#box-shadow-section #box-shadow-one {
+   box-shadow: inset -2px -2px 2px 0px rgba(0,0,0,0.5),
+               30px 30px 30px red,
+               100px -100px 100px blue,
+               -100px -100px 100px green,
+               -100px 100px 100px purple;
+}
+
+section#box-shadow-section #box-shadow-two {
+   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.25);
+}
+
+section#box-shadow-section #box-shadow-three { 
+   display: flex; 
+}
+
+section#box-shadow-section #box-shadow-three .box { 
+   margin-left:50px;
+   width:200px;
+}
+
+section#box-shadow-section #box-shadow-three .box-higher { 
+   box-shadow: 0 5px 65px 0 rgba(0, 0, 0, 0.5);
+}
+
+section#box-shadow-section #box-shadow-three .box-lower { 
+   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5);
 }
 
 @keyframes party {
@@ -146,14 +184,10 @@ section.timing-function p {
 }
 
 @keyframes fadeInOut {
-   0%, 100% {
-      opacity:0;
-      visibility:hidden;
-   }
-   50%, 60% {
-      opacity:1;
-      visibility:visible;
-   }
+  100% { 
+   visibility:visible;
+   opacity:1;
+  }
 }
 
 
