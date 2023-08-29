@@ -162,6 +162,18 @@ section#box-shadow-section #box-shadow-three .box-lower {
    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5);
 }
 
+section#css-gradients-section .two {
+   width:200px;
+   height:200px;
+   margin-left:50px;
+   margin-top:50px;
+}
+
+section#css-gradients-section .two {
+   background-color: hsl(0, 39%, 15%);
+   background-image: linear-gradient(transparent 50%,);
+}
+
 @keyframes party {
    0% {
       background-color:red;

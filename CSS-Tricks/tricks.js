@@ -1,5 +1,5 @@
-const timingButton = document.querySelector('section.timing-function button');
+// const timingButton = document.querySelector('section.timing-function button');
 
-timingButton.addEventListener('click', function (){
-   this.classList.toggle('party-time');
-});
+// timingButton.addEventListener('click', function (){
+//    this.classList.toggle('party-time');
+// });
