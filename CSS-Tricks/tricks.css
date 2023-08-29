@@ -1,217 +1,298 @@
 :root {
-   /* NEON BUTTON SECTION */
-   --clr-neon:hsl(317 100% 54%);
-   --clr-bg: hsl(323 21% 16%);
-   --clr-primary-400:blue;
+  /* NEON BUTTON SECTION */
+  --clr-neon: hsl(317 100% 54%);
+  --clr-bg: hsl(323 21% 16%);
+  --clr-primary-400: blue;
+  --gradient-box: linear-gradient(
+      45deg,
+      #8453c2,
+      #d65db1,
+      #ff6f91,
+      #ff9671,
+      #f9f871
+  );
 }
 
 body {
-   font-size:1rem;
+  font-size: 1rem;
 }
 
 section.neon-button-section *,
 section.neon-button-section *::before,
 section.neon-button-section *::after {
-   box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 section.neon-button-section {
-   padding:50px 0;
-   display:grid;
-   place-items:center;
-   background: var(--clr-bg);
-   font-family: sans-serif;
-   color: var(--clr-neon);
-   padding-right:10rem;
+  padding: 50px 0;
+  display: grid;
+  place-items: center;
+  background: var(--clr-bg);
+  font-family: sans-serif;
+  color: var(--clr-neon);
+  padding-right: 10rem;
 }
 
 .neon-button {
-   font-size:2rem;
-   color: var(--clr-neon);
-   display:inline-block;
-   cursor:pointer;
-   text-decoration:none;
-   border: var(--clr-neon) 0.125em solid; /*em is relative to rem size*/
-   padding:0.25em 1em;
-   border-radius:0.25em;
-   position:relative;
+  font-size: 2rem;
+  color: var(--clr-neon);
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  border: var(--clr-neon) 0.125em solid; /*em is relative to rem size*/
+  padding: 0.25em 1em;
+  border-radius: 0.25em;
+  position: relative;
 
-   /*Glowing effect*/
-   text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.5), /* value after "/" symbol is the alpha/opacity*/
-      0 0 1em var(--clr-neon); 
-   box-shadow: inset 0 0 0.5em 0 var(--clr-neon), /*and inset box shadow and regular box shadow makes it glow from the inside and out*/
+  /*Glowing effect*/
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.5),
+    /* value after "/" symbol is the alpha/opacity*/ 0 0 1em var(--clr-neon);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon),
+    /*and inset box shadow and regular box shadow makes it glow from the inside and out*/
       0 0 0.5em 0 var(--clr-neon);
-   transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
 }
 
 .neon-button::before,
 .neon-button::after {
-   position:absolute;
-   top:0;
-   left:0;
-   right:0;
-   bottom:0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .neon-button::before {
-   pointer-events:none; /*prevents shadow from activating onhover effect*/
-   content:"";
-   background:var(--clr-neon);
-   /*perspective allows rotateX to stretch the box out like a shadow
+  pointer-events: none; /*prevents shadow from activating onhover effect*/
+  content: "";
+  background: var(--clr-neon);
+  /*perspective allows rotateX to stretch the box out like a shadow
      perspective must come before rotate
      scale squishes the now stretched box even more*/
-   transform:translateY(120%) perspective(1em) rotateX(40deg) scale(1, 0.35);
-   /*the blur on filter acts the same way as the blur on a box shadow*/
-   filter:blur(1.5em);
-   opacity:0.7;
+  transform: translateY(120%) perspective(1em) rotateX(40deg) scale(1, 0.35);
+  /*the blur on filter acts the same way as the blur on a box shadow*/
+  filter: blur(1.5em);
+  opacity: 0.7;
 }
 
 .neon-button::after {
-   content:'';
-   box-shadow: 0 0 2em 0.5em var(--clr-neon);
-   opacity:0;
-   transition: opacity 200ms linear;
+  content: "";
+  box-shadow: 0 0 2em 0.5em var(--clr-neon);
+  opacity: 0;
+  transition: opacity 200ms linear;
 }
 
 .neon-button:hover,
-.neon-button:focus { /*focus initiates same state if tabbed onto*/
-   background:var(--clr-neon);
-   color: var(--clr-bg);
-   text-shadow: 0 0 0.8em hsla(0, 2%, 10%);
+.neon-button:focus {
+  /*focus initiates same state if tabbed onto*/
+  background: var(--clr-neon);
+  color: var(--clr-bg);
+  text-shadow: 0 0 0.8em hsla(0, 2%, 10%);
 }
 
 .neon-button:hover::before,
 .neon-button:focus::before {
-   opacity:1;
+  opacity: 1;
 }
 
 .neon-button:hover::after {
-   opacity:1;
+  opacity: 1;
 }
 
 section.timing-function {
-   background-color:#000;
-   padding:50px 0;
-   display:flex;
-   justify-content:center;
-   align-items:center;
-   color:white;
+  background-color: #000;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
 section.timing-function button {
-   padding:0.5em 1em;
-   background: var(--clr-primary-400);
-   border:0;
-   border-radius:0.25rem;
-   cursor:pointer;
-   font-size:2rem;
-   margin-right:20px;
-   transition: transform 1000ms;
+  padding: 0.5em 1em;
+  background: var(--clr-primary-400);
+  border: 0;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 2rem;
+  margin-right: 20px;
+  transition: transform 1000ms;
 }
 
 section.timing-function button:hover,
 section.timing-function button:focus-visible {
-   transform:translateY(-0.75rem);
-   transition: transform 350ms;
+  transform: translateY(-0.75rem);
+  transition: transform 350ms;
 }
 
 section.timing-function .party-time {
-   animation: party 2000ms infinite;
+  animation: party 2000ms infinite;
 }
 
 section.timing-function p {
-   opacity:0;
-   visibility:hidden;
-   animation: fadeInOut 2000ms ease-in-out infinite alternate;
+  opacity: 0;
+  visibility: hidden;
+  animation: fadeInOut 2000ms ease-in-out infinite alternate;
 }
 
 section#box-shadow-section .box {
-   padding:2em;
-   border: 1px solid black;
-   margin-left:100px;
-   margin-top:100px;
-   width:300px;
+  padding: 2em;
+  border: 1px solid black;
+  margin-left: 100px;
+  margin-top: 100px;
+  width: 300px;
 }
 
 section#box-shadow-section #box-shadow-one {
-   box-shadow: inset -2px -2px 2px 0px rgba(0,0,0,0.5),
-               30px 30px 30px red,
-               100px -100px 100px blue,
-               -100px -100px 100px green,
-               -100px 100px 100px purple;
+  box-shadow: inset -2px -2px 2px 0px rgba(0, 0, 0, 0.5), 30px 30px 30px red,
+    100px -100px 100px blue, -100px -100px 100px green,
+    -100px 100px 100px purple;
 }
 
 section#box-shadow-section #box-shadow-two {
-   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.25);
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.25);
 }
 
-section#box-shadow-section #box-shadow-three { 
-   display: flex; 
+section#box-shadow-section #box-shadow-three {
+  display: flex;
 }
 
-section#box-shadow-section #box-shadow-three .box { 
-   margin-left:50px;
-   width:200px;
+section#box-shadow-section #box-shadow-three .box {
+  margin-left: 50px;
+  width: 200px;
 }
 
-section#box-shadow-section #box-shadow-three .box-higher { 
-   box-shadow: 0 5px 65px 0 rgba(0, 0, 0, 0.5);
+section#box-shadow-section #box-shadow-three .box-higher {
+  box-shadow: 0 5px 65px 0 rgba(0, 0, 0, 0.5);
 }
 
-section#box-shadow-section #box-shadow-three .box-lower { 
-   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5);
+section#box-shadow-section #box-shadow-three .box-lower {
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5);
+}
+
+section#css-gradients-section div {
+  width: 200px;
+  height: 200px;
+  margin-left: 50px;
+  margin-top: 50px;
+  display:none;
 }
 
 section#css-gradients-section .two {
-   width:200px;
-   height:200px;
-   margin-left:50px;
-   margin-top:50px;
+  background-color: hsl(0, 39%, 15%);
+  background-image: linear-gradient(
+      -45deg,
+      transparent 75%,
+      hsl(0, 39%, 70%) 75%
+    ),
+    linear-gradient(
+      45deg, 
+      transparent 75%, 
+      hsl(0, 39%, 70%) 75%),
+    linear-gradient(
+      -135deg, 
+      transparent 75%, 
+      hsl(0, 39%, 70%) 75%),
+    linear-gradient(
+      135deg, 
+      transparent 75%, 
+      hsl(0, 39%, 70%) 75%),
+    linear-gradient(
+      -45deg, 
+      transparent 75%, 
+      hsl(0, 39%, 70%) 75%);
+   background-size:4rem 4rem;
+   background-position: 2rem 0, 2rem 0, 0 0, 0 0;
 }
 
-section#css-gradients-section .two {
-   background-color: hsl(0, 39%, 15%);
-   background-image: linear-gradient(transparent 50%,);
+section#css-gradients-section .three { 
+   background-image: var(--gradient-box);
+   transition:background-position 1s;
+   background-size:300%;
+   background-position:left;
 }
+
+section#css-gradients-section .three:hover {
+   background-position:right;
+}
+
+section#css-gradients-section .four { 
+   display:block;
+   background-image:var(--gradient-box);
+   background-size:400%;
+   animation: bg-animation 3s infinite alternate;
+}
+
+/* 
+Diamond shape
+background-image: linear-gradient(
+      -45deg,
+      transparent 75%,
+      hsl(0, 39%, 70%) 75%
+    ),
+    linear-gradient(
+      45deg, 
+      transparent 75%, 
+      hsl(0, 39%, 70%) 75%),
+    linear-gradient(
+      -135deg, 
+      transparent 75%, 
+      hsl(0, 39%, 70%) 75%),
+    linear-gradient(
+      135deg, 
+      transparent 75%, 
+      hsl(0, 39%, 70%) 75%),
+    linear-gradient(
+      -45deg, 
+      transparent 75%, 
+      hsl(0, 39%, 70%) 75%);
+   background-size: 4rem 4rem <-- makes checkered pattern
+   background-size: 4rem <-- creates jagged pattern
+   background-position: 2rem 0, 2rem 0, 0 0, 0 0; <-- creates zigzag
+} */
 
 @keyframes party {
-   0% {
-      background-color:red;
-   }
-   20% {
-      background-color:orange;
-   }
-   40% {
-      background-color:red;
-   }
-   60% {
-      background-color:blue;
-   }
-   80% {
-      background-color: purple
-   }
-   100% {
-      background-color: red;
-   }
-}
-
-@keyframes fadeInOut {
-  100% { 
-   visibility:visible;
-   opacity:1;
+  0% {
+    background-color: red;
+  }
+  20% {
+    background-color: orange;
+  }
+  40% {
+    background-color: red;
+  }
+  60% {
+    background-color: blue;
+  }
+  80% {
+    background-color: purple;
+  }
+  100% {
+    background-color: red;
   }
 }
 
+@keyframes fadeInOut {
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 
 @keyframes slideRightBack {
-   0% {
-     transform:translate(-120%);
-   }
-   50% {
-     transform:translate(0);
-   }
-   100% {
-     transform:translate(0);
-     padding-left:0;
-   }
- }
+  0% {
+    transform: translate(-120%);
+  }
+  50% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(0);
+    padding-left: 0;
+  }
+}
+
+@keyframes bg-animation {
+   0% {background-position:left}
+   100% {background-position: right}
+}
