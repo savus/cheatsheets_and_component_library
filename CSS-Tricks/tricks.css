@@ -15,6 +15,8 @@
 
 body {
   font-size: 1rem;
+  margin:0;
+  padding:0;
 }
 
 section.neon-button-section *,
@@ -223,6 +225,71 @@ section#css-gradients-section .four {
    animation: bg-animation 3s infinite alternate;
 }
 
+section#curvaceous-homepage-section {
+  font-family: 'Mukata', sans-serif;
+  background: #202731;
+}
+
+section#curvaceous-homepage-section section {
+  color:white;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:150px;
+  padding:120px 20vw;
+}
+
+section#curvaceous-homepage-section .red {
+  background-color: red;
+}
+
+section#curvaceous-homepage-section .blue {
+  background-color: blue;
+}
+
+section#curvaceous-homepage-section .pink {
+  background-color: pink;
+}
+
+section#curvaceous-homepage-section .dark {
+  background: #0f0f10;
+}
+
+section#curvaceous-homepage-section .curve {
+  position:absolute;
+  height:225px;
+  width:100%;
+  bottom:0;
+}
+
+section#curvaceous-homepage-section .curve::before {
+  content:'';
+  position:absolute;
+  display:block;
+  border-radius: 100% 50%;
+  width: 55%;
+  height: 100%;
+  background-color:#202731;
+  transform:translate(85%, 60%);
+}
+
+section#curvaceous-homepage-section .curve::after {
+  content:'';
+  position:absolute;
+  display:block;
+  border-radius: 100% 50%;
+  width: 55%;
+  height: 100%;
+  background-color:blue;
+  transform:translate(-4%, 40%);
+  z-index: 1;
+
+}
+
+section#curvaceous-homepage-section {
+
+}
 /* 
 Diamond shape
 background-image: linear-gradient(
