@@ -287,8 +287,40 @@ section#curvaceous-homepage-section .curve::after {
 
 }
 
-section#curvaceous-homepage-section {
+section#curvaceous-homepage-section .bubble {
+  position:relative;
+  background-color:transparent;
+}
 
+section#curvaceous-homepage-section .bubble::after {
+  content: '';
+  border-top-left-radius: 50% 100%;
+  border-top-right-radius: 50% 100%;
+  bottom: 0;
+  height: 35%;
+  width: 100%;
+  background-color: #0f0f10;
+  position:absolute;
+}
+
+.wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 140px;
+}
+
+.wave .shape-fill {
+  fill: pink;
 }
 /* 
 Diamond shape
