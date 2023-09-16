@@ -334,6 +334,84 @@ section#curvaceous-homepage-section .bubble::after {
 .layer-1 {
   background-image: url('./svg/layer1.svg');
 }
+
+section.cool-css-buttons .container {
+  text-align:center;
+  margin-top: 10px;
+}
+
+section.cool-css-buttons .btn {
+  border: 1px solid #3498db;
+  background:none;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-family: sans-serif;
+  cursor: pointer;
+  margin: 10px; 
+  transition: 0.8s;
+  position:relative;
+  overflow:hidden;
+}
+
+section.cool-css-buttons .btn1, 
+section.cool-css-buttons .btn2 {
+  color: #3498db;
+}
+
+section.cool-css-buttons .btn3,
+section.cool-css-buttons .btn4 {
+  color: #fff;
+}
+
+section.cool-css-buttons .btn1:hover, 
+section.cool-css-buttons .btn2:hover {
+  color:#fff;
+}
+
+section.cool-css-buttons .btn3:hover, 
+section.cool-css-buttons .btn4:hover {
+  color:#3498db;
+}
+
+section.cool-css-buttons .btn::before {
+  content:"";
+  position:absolute;
+  left:0;
+  width:100%;
+  height:0;
+  background: #3498db;
+  z-index: -1;
+  transition: 0.8s;
+}
+
+section.cool-css-buttons .btn1::before, 
+section.cool-css-buttons .btn3::before {
+  top: 0;
+  border-radius: 0 0 50% 50%;
+}
+
+section.cool-css-buttons .btn2::before, 
+section.cool-css-buttons .btn4::before {
+  bottom: 0;
+  border-radius: 50% 50% 0 0;
+}
+
+section.cool-css-buttons .btn3::before, 
+section.cool-css-buttons .btn4::before {
+  height: 180%;
+}
+
+section.cool-css-buttons .btn1:hover::before, 
+section.cool-css-buttons .btn2:hover::before {
+  height: 180%;
+}
+
+section.cool-css-buttons .btn3:hover::before, 
+section.cool-css-buttons .btn4:hover::before {
+  height: 0;
+}
+
+
 /* 
 Diamond shape
 background-image: linear-gradient(
