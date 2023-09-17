@@ -13,6 +13,10 @@
   );
 }
 
+*, *::before, *::after {
+  box-sizing:border-box;
+}
+
 body {
   font-size: 1rem;
   margin:0;
@@ -411,7 +415,71 @@ section.cool-css-buttons .btn4:hover::before {
   height: 0;
 }
 
+section.kyle-btns {
+  display:flex;
+  flex-direction: column;
+}
 
+section.kyle-btns button {
+  margin: 1rem;
+}
+
+section.kyle-btns .btn {
+  color:#222;
+  padding: 0.5em 1em;
+  border: none;
+  outline: none;
+  position:relative;
+  cursor:pointer;
+}
+
+section.kyle-btns .btn.btn-border-pop::before {
+  content: "";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  border: 2px solid #e3e3e3;
+  z-index:-1;
+  transition: top, left, right, bottom, 500ms ease-in-out;
+}
+
+section.kyle-btns .btn.btn-border-pop:hover::before,
+section.kyle-btns .btn.btn-border-pop:focus::before {
+  top: calc(2px * -2);
+  left: calc(2px * -2);
+  right: calc(2px * -2);
+  bottom: calc(2px * -2);
+}
+
+section.kyle-btns .btn.btn-background-slide::before {
+  content: "";
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  position:absolute;
+  background-color: #0af;
+  z-index:-1;
+  transition: transform 500ms ease-in-out;
+  transform: scaleX(0);
+  transform-origin:left;
+}
+
+section.kyle-btns .btn.btn-background-slide:hover::before,
+section.kyle-btns .btn.btn-background-slide:focus::before {
+  transform: scaleX(1);
+}
+
+section.kyle-btns .btn.btn-background-slide {
+  z-index:1;
+  transition: color 500ms ease-in-out;
+}
+
+section.kyle-btns .btn.btn-background-slide:hover {
+  color:white;
+}
 /* 
 Diamond shape
 background-image: linear-gradient(
