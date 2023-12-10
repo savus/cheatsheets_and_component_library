@@ -244,3 +244,26 @@ function shark(pontoonDistance, sharkDistance, youSpeed, sharkSpeed, dolphin) {
   if (youTime < sharkTime) return "Alive!";
   return "Sharkbait";
 }
+
+//count odd numbers lower than N
+
+const countOdd = (n) => Math.floor(n / 2);
+
+// create a method each_cons that accepts a list and a number n
+// and returns cascading subsets of the list of size n
+//example each_cons([1,2,3,4], 2) => [[1,2], [2,3], [3,4]]
+
+const each_cons = (array, n) => {
+  const results = [];
+
+  for (let i = 0; i < array.length; i++) {
+    let smallArr = [];
+    for (let j = 0; j < n; j++) {
+      let index = i + j;
+      if (index >= array.length) return results;
+      smallArr.push(array[index]);
+    }
+    results.push(smallArr);
+  }
+  return results;
+};
