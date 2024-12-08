@@ -1266,3 +1266,299 @@ const checkSquare = (board, startRow, startCol) => {
 };
 
 validateSudoku(board1);
+
+/*
+      Find the k-th largest element in an unsorted array. Note that it is
+       the k-th largest element in sorted order, not the k-th distinct 
+       element.
+  */
+
+//inputs: sorted array
+//output: k-th largest element in sorted order
+
+const kthLargest = (arr, k) => {
+  return arr.sort((a, b) => b - a)[k - 1];
+};
+
+const kthArray = [25, 1, 3, 108, 22, 21];
+const kthNumber = 4;
+console.log(
+  `the ${kthNumber}th number of ${kthArray} is ${kthLargest(
+    kthArray,
+    kthNumber
+  )}`
+);
+
+/*
+    Prompt: Write a function that takes a string as input and returns 
+    the longest word in the string.
+    Extension: Modify the function to return an array of all longest 
+    words (in case there are ties).
+  */
+
+//input: string
+//output: longest word in a string
+const longestWord = (str) => {
+  // const words = str.split(/\s+/).sort((a, b) => b.length - a.length);
+  // const longestLength = words[0].length;
+  // return words.filter((string) => string.length === longestLength);
+
+  const words = str.split(/\s+/);
+  const longestWords = [];
+  let maxLength = 0;
+
+  for (const word of words) {
+    const length = word.length;
+    if (length > maxLength) {
+      maxLength = length;
+      longestWords.length = 0;
+      longestWords.push(word);
+    } else if (length === maxLength) {
+      longestWords.push(word);
+    }
+  }
+
+  return longestWords;
+};
+
+const longestWordStr = "mew mew mew mew   few";
+console.log(
+  `Longest word in ${longestWordStr} is ${longestWord(longestWordStr)}`
+);
+/*
+    In this kata, you will sort elements in an array by decreasing 
+    frequency of elements. 
+    If two elements have the same frequency, sort them by increasing 
+    value. 
+  */
+
+const simpleFrequencySort = (arr) => {
+  /**
+    const freqMap = {};
+    arr.forEach(num => {
+      freqMap[num] = (freqMap[num] || 0) + 1;
+    });
+    
+    return arr.sort((a, b) => {
+      if(freqMap[b] !== freqMap[a]){
+        return freqMap[b] - freqMap[a];
+      }
+      return a - b;
+   }) 
+
+     */
+  //loop through array and record frequencies in object
+  const frequencyCount = {};
+  const list = [];
+  const result = [];
+  let reversedList = [];
+
+  for (const value of arr) {
+    frequencyCount[value] = (frequencyCount[value] || 0) + 1;
+  }
+
+  for (const [number, frequency] of Object.entries(frequencyCount)) {
+    list.push({ number: number, frequency: frequency });
+  }
+
+  reversedList = list.sort((a, b) => b.frequency - a.frequency);
+
+  for (const obj of reversedList) {
+    for (let i = 0; i < obj.frequency; i++) {
+      result.push(parseInt(obj.number));
+    }
+  }
+
+  return result;
+};
+
+const frequenciesArray = [1, 2, 3, 0, 5, 0, 1, 6, 8, 8, 6, 9, 1];
+console.log(
+  `the sorted frequency of ${frequenciesArray} is ${simpleFrequencySort(
+    frequenciesArray
+  )} `
+);
+
+//find the capitals
+
+const capitalsCodewars = (word) => {
+  const result = [];
+  for (let i = 0; i < word.length; i++) {
+    if (word[i] === word[i].toUpperCase()) result.push(i);
+  }
+  return result;
+};
+
+//+1 Array: codewars
+const plusOneArray = (arr) => {
+  const hasNoNegatives = arr.every((num) => num > -1);
+  const hasSingleDigits = arr
+    .map((num) => num + "")
+    .every((char) => char.length === 1);
+  const isInvalidArray = !arr.length || !hasNoNegatives || !hasSingleDigits;
+
+  let arrayInt = parseInt(arr.join(""));
+  const isFirstNumberZero = arr[0] === 0;
+  if (isInvalidArray) return null;
+
+  arrayInt = `${isFirstNumberZero ? 0 : ""}${arrayInt + 1}`;
+
+  return arrayInt.split("").map((char) => parseInt(char));
+};
+
+const plusOneArrayArr = [0, 1];
+console.log(
+  `Answer for +1 array ${plusOneArrayArr} is ${plusOneArray(plusOneArrayArr)} `
+);
+/*
+[
+  [1]
+]
+[   0, 1
+  0[1,2],
+]
+[
+  [1, 2, 3]
+]
+[
+  [1, 2, 3, 4]
+]
+]
+  [1, 2, 3, 4],
+  [1, 2, 3, 4],
+  [1, 2, 3, 4],
+  [1, 2, 3, 4]
+]
+
+*/
+
+const lengthOfMissingArray = (arrayOfArrays) => {
+  const result = (arrayOfArrays || [])
+    .map((array) => (array ? array.length : 0))
+    .sort((a, b) => a - b);
+
+  if (result.includes(0)) return 0;
+
+  for (let i = 0; i < result.length; i++) {
+    if (result[i] + 1 !== result[i + 1]) return result[i] + 1;
+  }
+  return 0;
+};
+
+console.log(
+  lengthOfMissingArray([
+    [1],
+    [1, 2],
+    [1, 2, 3, 4],
+    [1, 2, 3],
+    [1, 2, 3, 4, 5],
+    [1, 2, 3, 4, 5, 6, 7],
+  ])
+);
+
+/*
+    Given a string containing just the characters '(', ')', '{', '}', 
+    '[' and ']', determine if the input string is valid. An input string 
+    is valid if the brackets are closed in the correct order.
+  */
+
+//input: string containing characters "(){}[]"
+//output: boolean => true or false if string has opening and closing
+//brackets in correct order
+
+const validParens = (str) => {
+  const beginningParens = ["(", "{", "["];
+  const endingParens = [")", "}", "]"];
+  const matchingParens = { ")": "(", "}": "{", "]": "[" };
+  const parensSeen = new Set();
+
+  if (!/[[{(].*[)}\]]/.test(str)) return false;
+
+  for (const char of str) {
+    if (beginningParens.includes(char)) {
+      if (parensSeen.has(char)) {
+        continue;
+      } else {
+        parensSeen.add(char);
+      }
+    } else if (endingParens.includes(char)) {
+      if (parensSeen.has(matchingParens[char])) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
+
+const validParensStr = "(((}}])fjwleriw";
+console.log(
+  `valid parens of ${validParensStr} is ${validParens(validParensStr)}`
+);
+
+/*
+    Prompt: Write a function that takes an array and a number k as input and
+     rotates the array to the right by k steps.
+    Extension: Modify the function to handle negative values of k to rotate
+     the array to the left.
+  */
+
+const rotateArray = (array, k) => {
+  const n = array.length;
+  k = k % n;
+  if (k < 0) {
+    k += n;
+  }
+
+  return [...array.slice(n - k), ...array.slice(0, n - k)];
+};
+
+const unrotatedArray = [1, 2, 3, 4, 5];
+const stepsToRotate = -2;
+console.log(
+  `rotate ${unrotatedArray} by ${stepsToRotate} steps: ${rotateArray(
+    unrotatedArray,
+    stepsToRotate
+  )}`
+);
+
+/*
+    Write a function, persistence, that takes in a positive parameter 
+    num and returns its multiplicative persistence, which is the number 
+    of times you must multiply the digits in num until you reach a single
+    digit.
+  */
+
+const persistentBugger = (num) => {
+  // let currentTotal = 1;
+  // let multiplicativePersistence = 0;
+  // num = Math.abs(num);
+
+  // if (num < 10) return 0;
+
+  // while (num >= 10) {
+  //   while (num > 0) {
+  //     const currentNum = num % 10;
+  //     currentTotal *= currentNum;
+  //     num = Math.floor(num / 10);
+  //   }
+  //   num = currentTotal;
+  //   currentTotal = 1;
+  //   multiplicativePersistence++;
+  // }
+  // return multiplicativePersistence;
+
+  let result = 0;
+
+  while (num >= 10) {
+    num = [...`${num}`].reduce((total, num) => total * num);
+    result++;
+  }
+  return result;
+};
+
+const persistentNumber = 999;
+console.log(
+  `persistentBugger of ${persistentNumber} is ${persistentBugger(
+    persistentNumber
+  )}`
+);
