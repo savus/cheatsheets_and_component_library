@@ -376,3 +376,130 @@ const starStudents = classRoom.students
   );
 
 console.log(starStudents);
+
+//SETS
+
+const names = new Set();
+
+//ADD ITEMS
+
+names.add("Jason");
+names.add("Nathan");
+names.add("Jared");
+
+//Delete item
+
+names.delete("Jason");
+
+console.log(names);
+
+//SETS EXTENDED
+
+//three main helpful characteristics
+//[1] They remove duplicate values and ensure we store only unique values.
+//[2] They maintain the insertion order of elements we store.
+//[3] They are iterable and compatible with for...of loops.
+
+/* SYNTAX  */
+
+const exampleArr = [1, 2, 3, 3, 3, 3, 4, 5];
+const exampleStr = "This is a test string";
+
+//declare an empty set
+const exampleSet = new Set();
+
+//declare a set from a separate existing iterable
+const arrToSet = new Set(exampleArr);
+console.log("arrToSet", arrToSet);
+
+const stringToSet = new Set(exampleStr);
+console.log("stringToSet", stringToSet);
+
+/* EXAMPLE ALGOS */
+
+function removeDuplicates(arr) {
+  return Array.from(new Set(arr));
+}
+
+console.log("Removed duplicates", removeDuplicates(exampleArr));
+
+//Prompt: Given two arrays, find the elements that are common to both arrays.
+
+function intersection(arr1, arr2) {
+  const arr1Values = new Set(arr1);
+  // const arr2Values = new Set(arr2);
+  const intersectionVals = new Set();
+
+  for (let num of arr2) {
+    if (arr1Values.has(num)) intersectionVals.add(num);
+  }
+
+  return Array.from(intersectionVals);
+}
+
+console.log(intersection([1, 2, 3, 4, 5], [5, 3, 9, 6, 8]));
+
+//MAPS
+
+const mapPeople = new Map();
+
+mapPeople.set("Jason", 1);
+mapPeople.set("Nathan", 1);
+mapPeople.set("Jared", 1);
+
+console.log(mapPeople.has("Jason"));
+console.log(mapPeople.get("Jason"));
+
+const headers = document.querySelectorAll("h5");
+const totalClicks = new Map();
+
+headers.forEach((header) => {
+  totalClicks.set(header, 0);
+
+  header.addEventListener("click", function () {
+    const currentClick = totalClicks.get(this);
+
+    totalClicks.set(this, currentClick + 1);
+  });
+});
+
+console.log(headers);
+
+//ALGORITHMS
+
+//palindrome testing function
+
+// "pizza" // => false
+// "level" // => true
+// "race car" // => true
+// "raceCar" // => true
+// "race.car" // => true
+
+// CODE AND TEST
+
+function isPalindrome(string) {
+  // Break the problem into smaller, codeable steps
+
+  //remove spaces, punctuation, and lowercase the string
+  const cleanStrCopy = string.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+
+  //iterate over the string from the outside in
+  let left = 0;
+  let right = cleanStrCopy.length - 1;
+
+  while (left < right) {
+    //if at any point the characters don't match, it's not a palindrome
+    if (cleanStrCopy[left] !== cleanStrCopy[right]) {
+      console.log(`${string} is not a palindrome`);
+      return false;
+    }
+    left++;
+    right--;
+  }
+
+  // if we get to the end and all characters match, it's a palindrome
+  console.log(`${string} is a palindrome`);
+  return true;
+}
+
+isPalindrome("racecar");
