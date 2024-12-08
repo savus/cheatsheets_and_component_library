@@ -267,3 +267,112 @@ const each_cons = (array, n) => {
   }
   return results;
 };
+
+const tvShows = ["The Walking Dead", "Breaking Bad", "The Office"];
+
+const userSavedMovies = [];
+
+for (let i = 0; i < tvShows.length; i++) {
+  console.log(i);
+}
+
+//OBJECT METHODS
+//METHODS ARE FUNCTIONS THAT LIVE ON AN OBJECT
+
+const devslopesDiner = {
+  name: "Devslopes Diner",
+  cuisine: "American",
+  address: "555 Main Street",
+  avgPrice: 15,
+  reviews: [{}, {}, {}],
+  ratings: [9, 7, 10, 5],
+  passedInspection: true,
+};
+
+console.log(Object.keys(devslopesDiner));
+console.log(Object.values(devslopesDiner));
+for (const [key, value] of Object.entries(devslopesDiner)) {
+  console.log(`Key: ${key} / Value: ${value}`);
+}
+
+console.log(devslopesDiner.hasOwnProperty("cuisine"));
+
+//CREATING CUSTOM METHODS
+devslopesDiner.printAd = function () {
+  console.log(
+    `Welcome to ${devslopesDiner.name}! We serve ${devslopesDiner.cuisine} food and are located at ${devslopesDiner.address}. Come visit us!`
+  );
+};
+
+devslopesDiner.printAd();
+
+//Array.filter()
+//returns a new array that satisfies the conditions
+//in callback function
+
+const numbers = [2, 5, 7, 1];
+const classRoom = {
+  grade: "3rd Grade",
+  students: [
+    { name: "james", score: 90 },
+    { name: "jacob", score: 92 },
+    { name: "Jenny", score: 87 },
+    { name: "benny", score: 70 },
+    { name: "berry", score: 99 },
+    { name: "arin", score: 91 },
+    { name: "danny", score: 78 },
+  ],
+};
+
+const gradeAStudents = classRoom.students.filter(function (student) {
+  return student.score >= 90;
+});
+
+console.log(gradeAStudents);
+
+const filtered = numbers.filter(function (number, index) {
+  console.log(index);
+  return number >= 5;
+});
+
+console.log(filtered);
+
+//Array.reduce()
+//reduce elements in an array into a single value
+
+const sumOfNumbers = numbers.reduce(function (total, currentValue) {
+  return total + currentValue;
+}, 0);
+
+console.log(sumOfNumbers);
+
+const scoreTotal = classRoom.students.reduce(function (total, student) {
+  const { score } = student;
+  return total + score;
+}, 0);
+
+console.log(scoreTotal);
+
+const starStudents = classRoom.students
+  .filter(function (student) {
+    return student.score >= 90;
+  })
+  .map(function (student) {
+    student.score += 5;
+    return student;
+  })
+  .reduce(
+    function (acc, student, _index, array) {
+      const total = acc.sum + student.score;
+      const avg = total / array.length;
+
+      return {
+        sum: total,
+        arr: array,
+        studentAvg: avg,
+      };
+    },
+    { sum: 0, arr: [], studentAvg: 0 }
+  );
+
+console.log(starStudents);
