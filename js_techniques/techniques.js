@@ -1092,3 +1092,177 @@ const removeDupes = (arr) => {
 
 const dupesArray = [1, 1, 2, 5, 5, 5, 16, 47, 68, 92, 47].reverse();
 console.log(`Removed dupes of ${dupesArray} is ${removeDupes(dupesArray)}`);
+
+/*
+    Write a function that takes an array of integers and a target integer. 
+    The function should return indices of the two numbers that add up to the 
+    target. Solve this in O(n) or better.
+  */
+
+//target = 3
+//[2,4,5,1,3]
+//9 - [0]: 2 => 7
+const twoSumOptimized = (numbers, target) => {
+  const map = new Map();
+  //2: 0
+  for (let i = 0; i < numbers.length; i++) {
+    const compliment = target - numbers[i];
+    if (map.has(compliment)) {
+      return [map.get(compliment), i];
+    }
+    map.set(numbers[i], i);
+  }
+  return null;
+};
+
+const twoSumOptimizedArray = [2, 3, 5, 1, 3];
+const twoSumOptimizedTarget = 6;
+console.log(
+  `Two sum optimized of ${twoSumOptimizedTarget} is ${twoSumOptimized(
+    twoSumOptimizedArray,
+    twoSumOptimizedTarget
+  )}`
+);
+
+/*
+      Write a function that takes a string and returns the length of the longest 
+      substring without repeating characters.  
+  */
+
+//input: string
+//output: longest substring without repeating characters
+
+const longestSubstring = (str) => {
+  const charIndex = {};
+  let left = 0;
+  let maxLength = 0;
+  //Feel good now
+  //charIndex = {F: 0, e: 2}
+  //right = 2
+  //left = 2
+  //maxLength =
+  //currentChar = "e"
+
+  for (let right = 0; right < str.length; right++) {
+    const currentChar = str[right];
+
+    if (
+      charIndex[currentChar] !== undefined &&
+      charIndex[currentChar] >= left
+    ) {
+      left = charIndex[currentChar] + 1;
+    }
+
+    charIndex[currentChar] = right;
+
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+  return maxLength;
+};
+
+console.log(longestSubstring("The fat cat likes"));
+console.log(longestSubstring("Beef feels great understand?"));
+console.log(longestSubstring("The fat cat likes"));
+
+/*
+    Determine if a 9x9 Sudoku board is valid. A valid Sudoku board (partially filled)
+    must not violate the rules of Sudoku. The sudoku board input is represented by 
+    a 2D array containing either string numbers or "." (empty space) as elements. 
+  */
+
+const board1 = [
+  ["5", "7", "3", ".", ".", ".", ".", ".", "."],
+  ["4", "6", "2", ".", ".", ".", ".", ".", "."],
+  ["1", "8", "9", ".", ".", ".", ".", ".", "."],
+  ["2", "1", "7", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", "."],
+];
+
+const board2 = [
+  ["5", "7", "3", ".", ".", ".", ".", ".", "."],
+  ["4", "6", "9", ".", ".", ".", ".", ".", "."],
+  ["1", "2", "8", ".", ".", ".", ".", ".", "."],
+  ["2", "1", "7", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", "."],
+  [".", ".", ".", ".", ".", ".", ".", ".", "."],
+];
+
+const validateSudoku = (board) => {
+  const isValidLength = board.length === 9;
+  const isValidRowLength = board.every((row) => row.length === 9);
+
+  if (!isValidLength || !isValidRowLength) {
+    console.log("Board has invalid dimensions");
+    return false;
+  }
+
+  //check all rows
+  for (let i = 0; i < board.length; i++) {
+    if (!checkRow(board[i])) {
+      console.log("There are invalid rows");
+      return false;
+    }
+  }
+
+  //check all columns
+  for (let i = 0; i < board.length; i++) {
+    if (!checkColumn(board, i)) {
+      console.log("There are invalid columns");
+      return false;
+    }
+  }
+
+  //check all squares
+  for (let i = 0; i < board.length; i += 3) {
+    for (let j = 0; j < board.length; j += 3) {
+      if (!checkSquare(board, i, j)) {
+        console.log("Invalid duplicates in square");
+        return false;
+      }
+    }
+  }
+
+  console.log("Board is valid");
+  return true;
+};
+
+const checkNoDuplicates = (arr) => {
+  const set = new Set();
+  for (const value of arr) {
+    if (value === ".") continue;
+    if (set.has(value)) {
+      console.log("There are invalid duplicate numbers");
+      return false;
+    }
+    set.add(value);
+  }
+  return true;
+};
+
+const checkRow = (row) => {
+  return checkNoDuplicates(row);
+};
+
+const checkColumn = (board, columnNum) => {
+  const column = board.map((row) => row[columnNum]);
+  return checkNoDuplicates(column);
+};
+
+const checkSquare = (board, startRow, startCol) => {
+  const square = [];
+  for (let i = startRow; i < startRow + 3; i++) {
+    for (let j = startCol; j < startCol + 3; j++) {
+      square.push(board[i][j]);
+    }
+  }
+  return checkNoDuplicates(square);
+};
+
+validateSudoku(board1);
