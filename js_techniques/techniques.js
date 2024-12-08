@@ -503,3 +503,349 @@ function isPalindrome(string) {
 }
 
 isPalindrome("racecar");
+
+//BIG O NOTATION
+
+//1. Constant O(1): the input size does not
+//impact the number of operations needed to perform
+
+/*
+    2. Logarithmic O(logn): 
+    We add fewer actions to handle a larger input
+
+    3. Linear O(n): 
+    the input and number of actions are directly related
+
+    4. Squared O(n^2): 
+    An increase in the input
+  */
+
+//1. when analyzing our code, we assume the worst case scenario
+
+//2 our analysis should focus on major operations in our code (loops, methods, recursion),
+//not small operations (conditionals, arithmetic, assignment)
+
+//O(n-squared) demo:
+
+function bubbleSort(array) {
+  let n = array.length;
+
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      if (array[j] > array[j + 1]) {
+        [array[j], array[j + 1]] = [array[j + 1], array[j]];
+      }
+    }
+  }
+
+  return array;
+}
+
+//ALGORITHMS TUTORIALS
+
+//BIG-O notation describes the complexity of an algorithm using algebraic
+
+// - It expressed in terms of the input
+
+// - It focuses on the bigger picture without getting caught up in the minute details
+
+//Time complexity of this function is O(n) - or linear
+//size of input determines the size of the time-complexity
+function summation(n) {
+  //Count the number of times a statement executes based on the input size
+  //assume n = 4
+  let sum = 0; //this line executes once
+  for (let i = 1; i <= n; i++) {
+    sum += i; //this line executes 4 times
+  }
+  return sum; //this line executes once
+  //total executions of this function are n + 2
+  //if n = 4, total executions are 6
+  //if n = 6, total executions are 8
+  //if n = 100,000,000, exections are 100,00,002
+}
+
+//same function simplified
+//Time complexity of this function is O(1) - or constant
+function summationSimple(n) {
+  //no matter how big n is, this line is executed once
+  return (n * (n + 1)) / 2;
+}
+
+console.log("Summation is: ", summation(2));
+
+//OBJECTS Big - O
+/* 
+    To access, insert, or remove a value of an object
+    the time complexity is constant - O(1), the time to
+    perform these operations is not related to the number
+    of other values.
+    To search for a value or iterate over an object for a
+    value, the time complexity is linear - O(1), because
+    the number of properties present determines the number
+    of operations performed.
+  */
+
+//Object.keys() - O(n)
+//Object.value() - O(n)
+//Object.entreis() - O(n)
+
+//Arrays - Big - O
+// to insert / remove at the end of an array is O(1)
+/*
+    to insert / remove at the beginning of an array is O(n),
+    because the index of each other element has to be reset
+  */
+// to access an element by index is O(1)
+// searching for an element is O(n)
+// Push/ Pop O(1)
+// Shift/ Unshift / Concat / Slice / Splice - O(n)
+// forEach / Map / Filter / Reduce - O(n)
+
+//Math Algorithms
+
+//fibonacci sequence
+
+//given the number N, find the first N elements of the fibonacci sequence
+
+function fibonacciSeq(n) {
+  const result = [0, 1];
+
+  if (n <= 2) return result;
+  for (let i = 2; i < n; i++) {
+    result[i] = result[i - 1] + result[i - 2];
+  }
+  return result;
+}
+
+console.log(fibonacciSeq(7));
+
+//FACTORIAL OF A NUMBER
+
+//given an integer N, find the factorial of that integer
+
+// const factorialOfInt = (n) => {
+//   let factorial = 1;
+//   if (n < 1) return factorial;
+//   for (let i = n; i > 0; i--) {
+//     factorial *= i;
+//   }
+//   return factorial;
+// };
+
+function factorialOfInt(n) {
+  let result = 1;
+  for (let i = 2; i <= n; i++) {
+    result = result * i;
+  }
+  return result;
+}
+
+console.log("factorial: ", factorialOfInt(5));
+
+//PRIME NUMBER
+
+//Give a natural number N, determine if the number is prime or not
+
+const isPrime = (n) => {
+  if (n < 2) return false;
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) return false;
+  }
+  return true;
+};
+
+const testNum = 97;
+console.log(`is ${testNum} a prime number?`, isPrime(testNum));
+
+//Power of two
+
+//given a positive integer N, determine if the number is a power of 2 or not
+
+//time complexity is O(log n) - logarithmic
+const isPowerOfTwo = (n) => {
+  //if n is not positive, return false
+  if (n < 1) return false;
+
+  //write a loop that runs as long as n is greater than 1
+
+  while (n > 1) {
+    //return false if n is not evenly divisible by 2
+    if (n % 2 !== 0) return false;
+    //divide n by 2
+    n /= 2;
+  }
+  //if all quotients of n divided by 2 are evenly divisible, return true
+  return true;
+};
+
+console.log(
+  "power of two",
+  isPowerOfTwo(1),
+  isPowerOfTwo(2),
+  isPowerOfTwo(5),
+  isPowerOfTwo(8)
+);
+
+//recursion
+
+//problem solving technique where the solution depends on solutions
+//to smaller instances of the same problem
+
+//when a function calls itself
+
+//recursive fibonacci
+
+//given a number N, find the Nth element of the fibonacci sequence
+const recursiveFibonacci = (n) => {
+  if (n < 2) return n;
+  return recursiveFibonacci(n - 1) + recursiveFibonacci(n - 2);
+};
+
+console.log("recursive fibonacci ", recursiveFibonacci(1));
+
+//Recursive factorial of a number
+
+//Given an integer N, find the factorial of that integer
+
+const recursiveFactorial = (n) => {
+  console.log(n);
+  if (n === 0) return 1;
+  return n * recursiveFactorial(n - 1);
+};
+
+const factorialInt = 4;
+console.log(
+  `Factorial of ${factorialInt} is: `,
+  recursiveFactorial(factorialInt)
+);
+
+const tree = {
+  name: "John",
+  children: [
+    {
+      name: "sophia",
+      children: [],
+    },
+    {
+      name: "Chris",
+      children: [
+        {
+          name: "Gena",
+          children: [],
+        },
+        {
+          name: "Michael",
+          children: [],
+        },
+        {
+          name: "Francis",
+          children: [],
+        },
+      ],
+    },
+  ],
+};
+
+const printChildrenRecursive = (t) => {
+  if (t.children.length === 0) return;
+  t.children.forEach((child) => {
+    console.log(child.name);
+    printChildrenRecursive(child);
+  });
+};
+
+printChildrenRecursive(tree);
+
+const rescursiveSum = (n) => {
+  if (n === 0) return 0;
+  return n + rescursiveSum(n - 1);
+};
+
+console.log("Recursive sum is,", rescursiveSum(7));
+
+//SEARCH ALGORITHMS
+
+//linear search
+
+//given an array of N elements and a target of element T,
+//find the index of T in the array. Return -1 if the target
+//element is not found
+
+const linearSearch = (arr, target) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) return i;
+  }
+  return -1;
+};
+
+const binarySearch = (arr, target) => {
+  let leftIndex = 0;
+  let rightIndex = arr.length - 1;
+
+  while (leftIndex <= rightIndex) {
+    let middleIndex = Math.floor((rightIndex + leftIndex) / 2);
+
+    if (target === arr[middleIndex]) return middleIndex;
+
+    if (target < arr[middleIndex]) rightIndex = middleIndex - 1;
+    else leftIndex = middleIndex + 1;
+  }
+
+  return -1;
+};
+
+const sortedArray = [-5, 1, 2, 6, 10];
+
+console.log(`Index of ${10} is ${binarySearch(sortedArray, 10)}`);
+
+console.log(`Index of ${6} is ${binarySearch(sortedArray, 6)}`);
+
+console.log(`Index of ${20} is ${binarySearch(sortedArray, 20)}`);
+
+//bubble sort
+
+// quadradic/squared O(n^2) time complexity
+const bubbleArr = [0, 20, -2, 4, -6];
+//[20, 0]
+function bubbleSort(arr) {
+  let swapped;
+  const sortedArr = arr;
+
+  do {
+    swapped = false;
+    for (let i = 0; i < sortedArr.length - 1; i++) {
+      if (sortedArr[i] > sortedArr[i + 1]) {
+        let temp = sortedArr[i];
+        sortedArr[i] = sortedArr[i + 1];
+        sortedArr[i + 1] = temp;
+        swapped = true;
+      }
+    }
+  } while (swapped);
+  return sortedArr;
+}
+
+function reverseBubbleSort(arr) {
+  let swapped;
+  const sortedArr = arr;
+
+  do {
+    swapped = false;
+    for (let i = 0; i < sortedArr.length - 1; i++) {
+      //[0, 20]
+      if (sortedArr[i] < sortedArr[i + 1]) {
+        let temp = sortedArr[i];
+        sortedArr[i] = sortedArr[i + 1];
+        sortedArr[i + 1] = temp;
+        swapped = true;
+      }
+    }
+  } while (swapped);
+  return sortedArr;
+}
+
+console.log(`Sorted version of ${bubbleArr} is ${bubbleSort(bubbleArr)}`);
+console.log(
+  `Reverse sorted version of ${bubbleArr} is ${reverseBubbleSort(bubbleArr)}`
+);
