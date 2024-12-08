@@ -1562,3 +1562,102 @@ console.log(
     persistentNumber
   )}`
 );
+
+//OOP & Factory Functions
+
+function createRestaurant(name, cuisine, rating) {
+  return {
+    name,
+    cuisine,
+    rating,
+    getRating: function () {
+      return `${name} has a rating of ${rating}`;
+    },
+  };
+}
+
+const restaurant1 = createRestaurant("The Spicy Spoon", "Thai", 4.6);
+const restaurant2 = createRestaurant("Pizza Palace", "Italian", 4.0);
+
+console.log(restaurant1, restaurant2);
+
+//Constructors & Prototype Chain
+//Constructors allow us to create objects dynamically, have mechanisms
+// for storing common methods and properties more efficiently
+
+function Restaurant(name, cuisine, rating) {
+  this.name = name;
+  this.cuisine = cuisine;
+  this.rating = rating;
+}
+
+Restaurant.prototype.getRating = function () {
+  return `${this.name} has a rating of ${this.rating}`;
+};
+
+const rest1 = new Restaurant("Devslopes Diner", "American", 4.5);
+const rest2 = new Restaurant("Pizza Palace", "Italian", 4.0);
+
+console.log(rest1.getRating());
+console.log(rest2.getRating());
+
+//Class Syntax - a JS syntax we can use to organize and maintain our
+//constructors and methods more formally
+
+class Circle {
+  constructor(radius, color) {
+    this.radius = radius;
+    this.color = color;
+  }
+
+  calcArea() {
+    return Math.PI * this.radius ** 2;
+  }
+
+  calcCircumference() {
+    return 2 * this.radius * Math.PI;
+  }
+
+  describe() {
+    console.log(
+      `This circle has a radius of  ${
+        this.radius
+      }, an area of ${this.calcArea().toFixed(2)},
+        and a circumference of ${this.calcCircumference().toFixed(2)},
+        it is ${this.color}. `
+    );
+  }
+
+  static isValidRadius(radius) {
+    return radius > 0 && typeof radius === "number";
+  }
+}
+
+const myCircle = new Circle(10, "red");
+
+//EXTEND a Class
+
+class Sphere extends Circle {
+  constructor(radius, color, nickname) {
+    super(radius, color);
+    this.nickname;
+  }
+
+  getVolume() {
+    return (4 / 3) * Math.PI * this.radius ** 3;
+  }
+
+  describe() {
+    console.log(
+      `This sphere has a radius of  ${
+        this.radius
+      }, an area of ${this.calcArea().toFixed(2)},
+        and a volume of ${this.getVolume().toFixed(2)},
+        it is ${this.color}. `
+    );
+  }
+}
+
+const mySphere = new Sphere(5, "Blue", "Earth");
+console.log(mySphere);
+console.log(mySphere.describe());
