@@ -849,3 +849,246 @@ console.log(`Sorted version of ${bubbleArr} is ${bubbleSort(bubbleArr)}`);
 console.log(
   `Reverse sorted version of ${bubbleArr} is ${reverseBubbleSort(bubbleArr)}`
 );
+
+/*
+    Prompt: Write a function that takes an array of numbers as input
+    and returns the maximum value.
+    Extension: Modify the function to return the index of the maximum
+    value in the list.
+  */
+const maxValue = (arr) => {
+  //create a variable to track and compare each value of the array
+  let maximum = arr[0];
+  let index = 0;
+
+  //iterate through array, compare variable to current index value
+  //if current index value is larger than variable, reassign
+  //variable to current index value
+  for (let i = 0; i < arr.length; i++) {
+    if (maximum < arr[i]) {
+      maximum = arr[i];
+      index = i;
+    }
+  }
+
+  return { maxValue: maximum, index: index };
+};
+
+const maxValueArray = [-2, -5, -29, -45, -1, 3];
+console.log(`max value of ${maxValueArray} is`, maxValue(maxValueArray));
+
+/*
+      Implement a function that returns the first non-repeating character in a string.
+      If all characters are repeating, return null.
+    */
+
+//input: str
+//output: first non-repeating char
+
+//swiss => "w" not "i"
+//level => "v"
+//aabbcc => nul
+const firstNonRepeatingChar = (str) => {
+  // count object/dictionary object
+  const charCount = {};
+  //iterate over the string and count chars
+  for (const char of str) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+  //iterate over the character count obj and find the first
+  //instance of a char with count 1
+  for (const char of str) {
+    if (charCount[char] === 1) return char;
+  }
+
+  return null;
+};
+
+const firstNonRepeatingCharString = "ace2609";
+console.log(firstNonRepeatingChar("swiss"));
+console.log(firstNonRepeatingChar("level"));
+console.log(firstNonRepeatingChar("aabbcc"));
+
+/*
+      Prompt: Write a function that takes a list of numbers and 
+        returns the sum of all even numbers in the list.
+      Extension: Modify the function to return both the sum of 
+        even numbers and the sum of odd numbers.
+    */
+
+const sumEvensArray = [1, 2, 3, 4, 5, 6];
+
+//input: array of numbers
+//output: integer equal to the sum of all even numbers
+//extension: composite data type that tracks sum of all
+//even numbers and all odd numbers
+
+const sumEvens = (arr) => {
+  //extension: create composite variable that stores sum of evens
+  //sum of odds
+  let evens = 0;
+  let odds = 0;
+
+  //edgecase if array is empty return 0
+  if (!arr.length)
+    return {
+      evens,
+      odds,
+    };
+
+  //iterate through array
+  for (const value of arr) {
+    if (value % 2 === 0) evens += value;
+    else odds += value;
+  }
+
+  return {
+    evens,
+    odds,
+  };
+};
+
+console.log(`SumEvens for ${sumEvensArray} is`, sumEvens(sumEvensArray));
+
+/*
+      Prompt: Write a recursive function that returns the n-th number in the Fibonacci sequence using a recursive approach. 
+      Bonus: write a non-recursive, iterative approach.
+      Bonusx2: Memoize this function 
+    */
+
+//input: integer
+//output: n-th number in fibonacci sequence
+const devslopesFibSeq = (num) => {
+  //initialize variable that tracks numbers in sequence
+  const fibCount = [0, 1];
+  let currentSequence = 0;
+  if (num <= 2) return fibCount[num - 1];
+
+  //loop as many times as the input, record each number in fibCount
+  for (let i = 2; i < num; i++) {
+    //0, 1, 1, 2, 3, 5
+    currentSequence =
+      fibCount[fibCount.length - 1] + fibCount[fibCount.length - 2];
+    fibCount.push(currentSequence);
+  }
+
+  //return nth number in sequence
+  return currentSequence;
+};
+
+console.log(devslopesFibSeq(3));
+
+const devslopesFibSeqRecursive = (num) => {
+  if (num === 1) return 0;
+  if (num === 2) return 1;
+
+  return devslopesFibSeqRecursive(num - 1) + devslopesFibSeqRecursive(num - 2);
+};
+
+console.log("Recursive fib devs is ", devslopesFibSeqRecursive(7));
+
+//recursive factorials
+
+//!5 => 5 * 4 * 3 * 2 * 1 => 5 * !4 => 120
+// !4 => 4 * 3 * 2 * 1 => 4 * !3 => 24
+
+/*
+      function factorial(number) {
+        if (n <= 1) return 1;
+        return number * factorial(number - 1); 
+      }
+  
+      factorial(5) => 5 * factorial(4) => 5 * 4 * factorial(3) => 
+        5 * 4 * 3 * factorial(2) => 5 * 4 * 3 * 2 * factorial(1);
+    
+    */
+
+/*
+      "Prompt: Write a function that takes two sorted lists of 
+        numbers and returns a single sorted list containing all 
+        elements from both lists.
+      Extension: Modify the function to merge the lists without 
+        using any built-in sorting functions."
+    */
+
+const mergeSortedList = (arr1, arr2) => {
+  const result = [];
+  let index1 = 0;
+  let index2 = 0;
+
+  while (index1 < arr1.length && index2 < arr2.length) {
+    if (arr1[index1] < arr2[index2]) {
+      result.push(arr1[index1]);
+      index1++;
+    } else {
+      result.push(arr2[index2]);
+      index2++;
+    }
+  }
+
+  while (index1 < arr1.length) {
+    result.push(arr1[index1]);
+    index1++;
+  }
+
+  while (index2 < arr2.length) {
+    result.push(arr2[index2]);
+    index2++;
+  }
+
+  return result;
+};
+
+//[1, 2, 3, 4, 5]
+const mSL1 = [1, 3, 5, 7, 9, 11];
+const mSL2 = [2, 4, 6, 8, 10, 12, 14];
+
+console.log(mergeSortedList(mSL1, mSL2));
+
+/*
+      Given an array of integers from 1 to n with one number missing, 
+      write a function to find the missing number.
+    */
+
+//inputs: array of integers from 1 to n
+//outputs: integer missing from array
+const findMissingNum = (arr) => {
+  //expected length of nums ex: if last digit is 5
+  //n should be 5
+  const n = arr.length + 1;
+
+  //expected sum of five digits would be 15
+  const expectedSum = (n * (n + 1)) / 2; // => sum of all natural numbers equation
+
+  const actualSum = arr.reduce((total, num) => total + num, 0);
+
+  //if there is a missing number, the answer will be the difference
+  return expectedSum - actualSum;
+};
+
+const findMissingNumArr = [1, 2, 3, 5];
+console.log("missing num is", findMissingNum(findMissingNumArr));
+
+/*
+      Prompt: Write a function that takes a list (array) and returns a new list 
+      with all duplicate elements removed.
+      Extension: Modify the function to maintain the order of the original list.
+    */
+
+//inputs: array
+//output: array with duplicates removed
+
+const removeDupes = (arr) => {
+  const tracked = new Set();
+  return arr.filter((element) => {
+    if (tracked.has(element)) {
+      return false;
+    } else {
+      tracked.add(element);
+      return true;
+    }
+  });
+};
+
+const dupesArray = [1, 1, 2, 5, 5, 5, 16, 47, 68, 92, 47].reverse();
+console.log(`Removed dupes of ${dupesArray} is ${removeDupes(dupesArray)}`);
