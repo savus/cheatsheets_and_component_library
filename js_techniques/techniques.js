@@ -1556,12 +1556,242 @@ const persistentBugger = (num) => {
   return result;
 };
 
+/*
+    Prompt: Write a function filterArray that takes an array and a callback function as input.
+     The function should return a new array containing only the elements that satisfy the condition defined 
+     in the callback function.
+
+    Extension: Modify the filterArray function to accept an additional argument that specifies the starting 
+     index from which to begin filtering the array.
+  */
+
+const filterArrayDevslopes = (arr, cb, startIndex = 3) => {
+  if (arr.length === 0) return 0;
+  const newArr = [];
+  for (let i = startIndex; i < arr.length; i++) {
+    if (cb(arr[i])) newArr.push(arr[i]);
+  }
+  return newArr;
+};
+
 const persistentNumber = 999;
 console.log(
   `persistentBugger of ${persistentNumber} is ${persistentBugger(
     persistentNumber
   )}`
 );
+
+/*
+    Complete the solution so that the function will break up camel casing, 
+    using a space between words.
+  */
+
+//input: string
+//output: string with space between words
+
+const breakCamelCase = (str) => {
+  return str.replace(/([a-z])([A-Z])/g, "$1 $2");
+};
+
+const camelCase1 = "camelCase";
+const camelCase2 = "identifier";
+const camelCase3 = "";
+const camelCase4 = "camel Casing Test";
+const camelCase5 = "hereIsMyTestOfCamelCasingAndAMoose";
+
+console.log(breakCamelCase(camelCase1));
+console.log(breakCamelCase(camelCase2));
+console.log(breakCamelCase(camelCase3));
+console.log(breakCamelCase(camelCase4));
+console.log(breakCamelCase(camelCase5));
+
+/*
+  Given a list and a number, create a new list that contains each number of 
+    list at most N times, without reordering.
+  For example if the input number is 2, and the input list is 
+    [1,2,3,1,2,1,2,3], you take [1,2,3,1,2], drop the next [1,2] since this would lead to 1 and 2 being in the result 3 times, and then take 3, which leads to [1,2,3,1,2,3].
+  With list [20,37,20,21] and number 1, the result would be [20,37,21]. 
+  */
+
+const deleteNth = (arr, n) => {
+  const duplicates = {};
+  return (arr || []).filter((num) => {
+    duplicates[num] = (duplicates[num] || 0) + 1;
+    if (duplicates[num] > n) return false;
+    return true;
+  });
+};
+
+const deleteNthArray = [1, 1, 2, 2, 2];
+const nthDuplicate = 0;
+console.log(
+  `DeleteNth for ${nthDuplicate} of ${deleteNthArray} is ${deleteNth(
+    deleteNthArray,
+    nthDuplicate
+  )}`
+);
+
+/*
+    Given an array where the i-th element is the price of a given stock on day i, 
+    find the maximum profit you can achieve by buying and then selling the stock.
+     You can only complete one transaction.
+  */
+
+const buySellStock = (prices) => {
+  let minPrice = Infinity;
+  let maxProfit = 0;
+
+  for (let i = 0; i < prices.length; i++) {
+    if (prices[i] < minPrice) {
+      minPrice = prices[i];
+    } else {
+      let profit = prices[i] - minPrice;
+      maxProfit = Math.max(maxProfit, profit);
+    }
+  }
+  console.log(minPrice);
+  return maxProfit;
+};
+
+const buySellStockArr = [7, 1, 3, 4, 5, 6, 0];
+console.log(
+  `max profit of ${buySellStockArr} is ${buySellStock(buySellStockArr)}`
+);
+
+/*
+    Prompt: Given an array of integers, find the highest 
+    product of two unique numbers in the array.
+    Extension: Do not use native methods.
+  */
+
+const highestOfTwoProducts = (arr) => {
+  if (arr.length < 2) {
+    throw new Error("Array must have at least two values");
+  }
+  let largest = -Infinity;
+  let secondLargest = -Infinity;
+  let smallest = Infinity;
+  let secondSmallest = Infinity;
+
+  for (const value of arr) {
+    if (value > largest) {
+      secondLargest = largest;
+      largest = value;
+    } else if (value > secondLargest) {
+      secondLargest = value;
+    }
+
+    if (value < smallest) {
+      secondSmallest = smallest;
+      smallest = value;
+    } else if (value < secondSmallest) {
+      secondSmallest = value;
+    }
+  }
+  return Math.max(largest * secondLargest, smallest * secondSmallest);
+};
+
+const hightestProductArr = [7, -3];
+console.log(
+  `Highest product of ${hightestProductArr} is ${highestOfTwoProducts(
+    hightestProductArr
+  )}`
+);
+
+/*
+    Given an array of integers, find the one that appears an
+     odd number of times.
+    There will always be only one integer that appears an odd
+     number of times.
+  */
+
+const findOdd = (arr) => {
+  const list = {};
+  for (const value of arr) {
+    list[value] = (list[value] || 0) + 1;
+  }
+
+  for (const [key, value] of Object.entries(list)) {
+    if (value % 2 !== 0) return parseInt(key);
+  }
+};
+
+const findOddArr = [4, 4, 4, 1, 2, 2, 3, 3, 3, 3, 3, 3, 2, 2, 1];
+console.log(`The odd man out is ${findOdd(findOddArr)}`);
+
+/*
+    Write a function that will return the count of distinct
+     case-insensitive alphabetic characters and numeric digits
+     that occur more than once in the input string. 
+      The input string can be assumed to contain only
+      alphabets (both uppercase and lowercase) and 
+      numeric digits.
+  */
+
+const duplicateCount = (text) => {
+  const lowerCase = text.toLowerCase();
+  const frequencyCount = {};
+  let occurrences = 0;
+  for (const char of lowerCase) {
+    frequencyCount[char] = (frequencyCount[char] || 0) + 1;
+  }
+
+  for (const value of Object.values(frequencyCount)) {
+    if (value > 1) occurrences++;
+  }
+  return occurrences;
+};
+
+const dupilcateCountString = "ABBA";
+console.log(
+  `duplicate count of ${dupilcateCountString} is ${duplicateCount(
+    dupilcateCountString
+  )}`
+);
+
+/*
+    You live in the city of Cartesia where all roads are laid
+     out in a perfect grid. You arrived ten minutes too early 
+     to an appointment, so you decided to take the opportunity 
+     to go for a short walk. The city provides its citizens 
+     with a Walk Generating App on their phones -- 
+     everytime you press the button it sends you an array
+      of one-letter strings representing directions to walk 
+      (eg. ['n', 's', 'w', 'e']). You always walk only a single 
+      block for each letter (direction) and you know it takes
+       you one minute to traverse one city block, so create a
+        function that will return true if the walk the app
+         gives you will take you exactly ten minutes (you don't
+          want to be early or late!) and will, of course
+          , return you to your starting point. Return false 
+          otherwise.
+  */
+const isValidWalk = (walk) => {
+  if (walk.length !== 10) return false;
+  let x = 0;
+  let y = 0;
+  const directions = {
+    n: () => (x += 1),
+    s: () => (x -= 1),
+    e: () => (y += 1),
+    w: () => (y -= 1),
+  };
+
+  for (const dir of walk) {
+    directions[dir]();
+  }
+
+  return x === 0 && y === 0;
+};
+
+const walk1 = ["n", "s", "n", "s", "n", "s", "n", "s", "n", "s"]; // => true
+const walk2 = ["n", "n", "n", "s", "n", "s", "n", "s", "n", "s"]; // => false
+const walk3 = ["w", "w", "w", "e", "e", "e", "w", "e", "w", "e"]; // => true
+const walk4 = ["e", "e", "w", "e", "w", "e"]; // => false
+const walk5 = ["w", "e", "w", "e", "w", "e", "w", "e", "w", "e", "w", "e"]; // => false
+const walk6 = ["w", "n", "n", "s", "e", "s", "e", "e", "w", "w"];
+console.log(`current walk validity is : ${isValidWalk(walk6)}`);
+// console.log(`Current walk is valid: ${walk3} - ${isValidWalk(walk3)}`);
 
 //OOP & Factory Functions
 
