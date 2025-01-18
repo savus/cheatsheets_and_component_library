@@ -1793,6 +1793,265 @@ const walk6 = ["w", "n", "n", "s", "e", "s", "e", "e", "w", "w"];
 console.log(`current walk validity is : ${isValidWalk(walk6)}`);
 // console.log(`Current walk is valid: ${walk3} - ${isValidWalk(walk3)}`);
 
+const reverseInputNum = (num) => {
+  let result = 0;
+  let absNum = Math.abs(num);
+  const isNegative = num < 0;
+  while (absNum > 0) {
+    const lastDigit = absNum % 10;
+    result = result * 10 + lastDigit;
+    absNum = Math.floor(absNum / 10);
+  }
+  return isNegative ? -result : result;
+};
+
+const validAnagram = (s, t) => {
+  const noSpace = /\s/g;
+  s = typeof s === "string" ? s.toLowerCase().replace(noSpace, "") : "";
+  t = typeof t === "string" ? t.toLowerCase().replace(noSpace, "") : "";
+  const splitS = s.split("");
+
+  if (s.length === 0 || t.length === 0 || s.length !== t.length) return false;
+
+  for (const char of t) {
+    if (!splitS.includes(char)) return false;
+  }
+  return true;
+};
+
+const ascendDescend = (length, minimum, maximum) => {
+  let result = "";
+  for (let i = minimum; i <= maximum; i++) {
+    result += i;
+  }
+
+  for (let i = maximum - 1; i > minimum; i--) {
+    result += i;
+  }
+
+  result = result.repeat(length);
+
+  return result.substring(0, length);
+};
+
+const powerOfThree = (n) => {
+  if (n < 1) return false;
+
+  while (n > 1) {
+    if (n % 3 !== 0) return false;
+    n /= 3;
+  }
+  return true;
+};
+
+const findMode = (arr) => {
+  let highestFrequency = 0;
+
+  const frequencies = {};
+  const modes = [];
+
+  for (const num of arr) {
+    frequencies[num] = (frequencies[num] || 0) + 1;
+    if (highestFrequency < frequencies[num]) {
+      highestFrequency = frequencies[num];
+    }
+  }
+
+  for (const [key, value] of Object.entries(frequencies)) {
+    if (value === highestFrequency) modes.push(key);
+  }
+  return [...modes];
+};
+
+/*
+    You will be given an array of numbers. 
+    You have to sort the odd numbers in ascending order while leaving
+    the even numbers at their original positions.
+  */
+
+const sortTheOdd = (array) => {
+  const sortOdd = array.filter((num) => num % 2).sort((a, b) => a - b);
+  return array.map((num) => (num % 2 ? sortOdd.shift() : num));
+};
+
+//combine(['a', 'b', 'c'], [1, 2, 3]) == ['a', 1, 'b', 2, 'c', 3]
+//['a', 'b', 'c'], [1, 2, 3, 4, 5], [6, 7], [8]) == ['a', 1, 6, 8, 'b', 2, 7, 'c', 3, 4, 5]
+
+const combineLoops = (...arrays) => {
+  let innerIndex = 0;
+  const result = [];
+  const maxLength = Math.max(...arrays.map((array) => array.length));
+
+  while (innerIndex < maxLength) {
+    for (let i = 0; i < arrays.length; i++) {
+      if (innerIndex < arrays[i].length) {
+        result.push(arrays[i][innerIndex]);
+      }
+    }
+    innerIndex++;
+  }
+  return result;
+};
+
+const twistedSum = (n) => {
+  let result = 0;
+  n = parseInt(n.match(/\d+/));
+
+  const sumOfDigits = (num) => {
+    let sum = 0;
+    while (num > 0) {
+      sum += num % 10;
+      num = Math.floor(num / 10);
+    }
+
+    return sum;
+  };
+
+  for (let i = 0; i <= n; i++) {
+    if (i >= 10) {
+      result += sumOfDigits(i);
+    } else {
+      result += i;
+    }
+  }
+  return result;
+};
+
+const highestScoringWord = (str) => {
+  const words = str.split(" ");
+  const letters = words.map((word) => word.split(""));
+  const scores = letters.map((word) =>
+    word.reduce((total, current) => current.charCodeAt() - 96 + total, 0)
+  );
+  const highestScoringWord = words[scores.indexOf(Math.max(...scores))];
+
+  return highestScoringWord;
+};
+
+const findDiscount = (prices) => {
+  const listed = prices.split(" ").map((price) => parseInt(price));
+  let result = [];
+
+  while (listed.length > 0) {
+    let initial = listed.find((price, _index, array) =>
+      array.includes(price * 0.75)
+    );
+    let discount = listed.find((price) => price === initial * 0.75);
+    listed.splice(listed.indexOf(initial), 1);
+    result.push(listed.splice(listed.indexOf(discount), 1));
+    console.log(listed);
+  }
+
+  return result.join(" ");
+};
+
+const stepGrid = (str) => {
+  const splitStr = str.split(" ");
+
+  const odds = splitStr.filter((word, index) => {
+    if (index % 2 === 0) return word;
+  });
+
+  const evens = splitStr.filter((word, index) => {
+    if (index % 2 !== 0) return word;
+  });
+
+  const totalLengthOfRows = odds.reduce((total, word, index) => {
+    if (index === 0) {
+      return total + word.length;
+    } else {
+      return total + word.slice(1).length;
+    }
+  }, 0);
+
+  const totalNumberOfRows = evens.reduce((total, word, index) => {
+    if (index === 0) {
+      return total + word.length;
+    } else {
+      return total + word.slice(1).length;
+    }
+  }, 0);
+
+  let x = 0;
+  let y = 0;
+
+  const grid = [];
+
+  for (let i = 0; i < totalNumberOfRows; i++) {
+    grid[i] = [];
+    for (let j = 0; j < totalLengthOfRows; j++) {
+      grid[i][j] = " ";
+    }
+  }
+
+  for (let i = 0; i < splitStr.length; i++) {
+    if (i % 2 === 0) {
+      //go across
+      for (let j = 0; j < splitStr[i].length; j++) {
+        grid[y][x] = splitStr[i][j];
+        x++;
+      }
+      x--;
+    }
+    if (i % 2 !== 0) {
+      //go down
+      for (let j = 0; j < splitStr[i].length; j++) {
+        grid[y][x] = splitStr[i][j];
+        y++;
+      }
+      y--;
+    }
+  }
+
+  return grid;
+};
+
+const oracleCoinMethod = (arr) => {
+  const indices = {
+    one: 0,
+    two: 1,
+    three: 2,
+    four: 3,
+    five: 4,
+    six: 5,
+  };
+
+  const getMiddleSymbol = (obj) => {
+    if (obj.h === 3) return "o";
+    if (obj.t === 3) return "x";
+    if (obj.t === 2 && obj.h === 1) return "-";
+    if (obj.t === 1 && obj.h === 2) return " ";
+  };
+
+  const printRow = (symbol) => `----${symbol}----`;
+
+  const sorted = arr.sort((a, b) => indices[b[0]] - indices[a[0]]);
+
+  const countFlips = (array) => {
+    return array.slice(1).reduce(
+      (flips, flip) => {
+        flips[flip] += 1;
+        return flips;
+      },
+      { h: 0, t: 0 }
+    );
+  };
+
+  const printHexagram = () => {
+    let hexagram = "";
+    sorted.forEach((row, index, array) => {
+      const isLast = index === array.length - 1;
+      const flips = countFlips(row);
+      const symbol = getMiddleSymbol(flips);
+      hexagram += `${printRow(symbol)}${isLast ? "" : "\n"}`;
+    });
+    return hexagram;
+  };
+
+  return printHexagram();
+  // return printRow(getMiddleSymbol({ h: 2, t: 1 }));
+};
+
 //OOP & Factory Functions
 
 function createRestaurant(name, cuisine, rating) {
